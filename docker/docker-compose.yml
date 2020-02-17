@@ -7,7 +7,7 @@ volumes:
 
 services:
   service:
-    image: mdiazp/appointments-test-service:v1.0.0-alpha.0
+    image: mdiazp/appointments-test-service:v0.0.0-alpha.0
     networks:
       - "private"
     ports:
