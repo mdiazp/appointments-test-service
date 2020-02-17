@@ -1,0 +1,28 @@
+version: "3.3"
+
+networks:
+  private:
+
+volumes:
+
+services:
+  service:
+    image: ernestofg/boukker-accounts-temp-service:latest
+    networks:
+      - "private"
+    ports:
+      - "50051:50051"
+    volumes:
+      - "../gitignore/ssl:/opt/service/cert"
+      
+    environment:
+      COMMON_APPNAME: "boukker-accounts-temp-service"
+      COMMON_SERVER_ADDRESS: "0.0.0.0:50051"
+      COMMON_DEBUG: "true"
+      COMMON_USE_TLS: "true"
+      COMMON_CERT: "/opt/service/cert/server/server-cert.pem"
+      COMMON_KEY: "/opt/service/cert/server/server-key.pem"
+      COMMON_CLIENT_CAS: "/opt/service/cert/client/client-ca-cert.pem"
+      
+    command: "./server"
+    restart: "unless-stopped"
